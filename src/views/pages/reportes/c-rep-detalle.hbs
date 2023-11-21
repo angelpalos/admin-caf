@@ -1,0 +1,134 @@
+<style>
+    .periodo {
+        margin-top: 4rem;
+    }
+
+    body {
+        zoom: 80%;
+    }
+
+    .fecha {
+        margin-top: 2rem;
+    }
+
+    .generar-reporte {
+        position: relative;
+        left: 47%;
+        top: -50px;
+    }
+
+    .all {
+
+        margin-left: 2rem;
+
+    }
+</style>
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reporte de detalle</title>
+</head>
+
+<body>
+    <div class="block mx-auto my-12 p-8 bg-white w-2/3 border border-gray-200 rounded-lg
+    shadow-lg text-gray-800 rounded-3xl">
+
+        <!--titulo de el container-->
+        <h1 class="text-2xl font-bold text-center fs-2">Reporte de detalle</h1>
+
+            <!--Se valida toda la informacion previamente creada y guardada en la base de datos se pone en cuadros de texto para poder 
+            editar la informacion tiene que estar contestados los campos con la informacion del usuario-->
+            <div class="all">
+                <div class="fecha">
+                    <form action="/rep-detalle_d" method="post" class="mt-4">
+                        <label class="fs-4 ">Fecha</label>
+                        <input type="date" name="fecha" placeholder="fecha" class="border border-gray-200 w-500px text-lg placeholder-gray-500 p-2 my-2 
+                            bg-gray-300 focus:bg-white rounded-3xl ml-3" required>
+                        <button type="submit" class="btn btn-success btn-sm fs-5 w-25 ml-5">Generar</button>
+                    </form>
+                </div>
+                {{#if reporte_dia}}
+                <table class="table">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Folio</th>
+                            <th>Usuario</th>
+                            <th>Producto</th>
+                        </tr>
+                    </thead>
+                {{#each reporte_dia}}
+                    <tbody>
+                        <tr>
+                            <td>{{fecha}}</td>
+                            <td>{{folio}}</td>
+                            <td>{{correo_clie}}</td>
+                            <td>{{name}}</td>
+                        </tr>
+                    </tbody>
+                {{/each}}   
+                </table>
+                {{/if}}
+
+
+                {{#if errd}}
+                    <div class="reporte-dia">
+                        <h5>{{errd}}</h5>
+                    </div>
+                {{/if}}
+
+
+<br><hr>
+
+
+                <div class="periodo">
+                    <form action="/rep-detalle_p" method="post">
+                        <label class="fs-4">Periodo de</label>
+                        <input type="date" name="fecha_i" placeholder="fecha" class="border border-gray-200 w-50% text-lg placeholder-gray-500 p-2 my-2 
+                            bg-gray-300 focus:bg-white rounded-3xl ml-3"  required>
+                        <label class="fs-4 ml-5">a</label>
+                        <input type="date" name="fecha_f" placeholder="fecha" class="border border-gray-200 w-50% text-lg placeholder-gray-500 p-2 my-2 
+                            bg-gray-300 focus:bg-white rounded-3xl  mt-3"  required>
+
+                        <button type="submit" class="btn btn-success btn-sm  w-25 fs-5 ml-8 ">Generar</button>  
+                    </form>
+                </div>
+                {{#if reporte_periodo}}
+                <table class="table">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Folio</th>
+                            <th>Usuario</th>
+                            <th>Producto</th>
+                        </tr>
+                    </thead>
+                {{#each reporte_periodo}}
+                    <tbody>
+                        <tr>
+                            <td>{{fecha}}</td>
+                            <td>{{folio}}</td>
+                            <td>{{correo_clie}}</td>
+                            <td>{{name}}</td>
+                        </tr>
+                    </tbody>
+                {{/each}}   
+                </table>
+                {{/if}}
+
+
+                {{#if errp}}
+                    <div class="reporte-periodo">
+                        <h5>{{errp}}</h5>
+                    </div>
+                {{/if}}
+        </div>
+    </div>
+</body>
+</html>
