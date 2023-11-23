@@ -58,8 +58,8 @@
                         <tr>
                             <th>Producto</th>
                             <th>Cantidad vendida</th>
-                            <th>Total vendido</th>
                             <th>Costo Total</th>
+                            <th>Ingreso</th>
                         </tr>
                     </thead>
                 {{#each reporte_dia}}
@@ -67,8 +67,8 @@
                         <tr>
                             <td>{{name}}</td>
                             <td>{{cantidad_total}}</td>
-                            <td>{{subtotal}}</td>
-                            <td>{{costo_total}}</td>
+                            <td>${{costo_total}}</td>
+                            <td>${{subtotal}}</td>
                         </tr>
                     </tbody>
                 {{/each}}   
@@ -106,8 +106,9 @@
                         <tr>
                             <th>Producto</th>
                             <th>Cantidad vendida</th>
-                            <th>Total vendido</th>
                             <th>Costo Total</th>
+                            <th>Ingreso</th>
+                            
                         </tr>
                     </thead>
                 {{#each reporte_periodo}}
@@ -115,8 +116,8 @@
                         <tr>
                             <td>{{name}}</td>
                             <td>{{cantidad_total}}</td>
-                            <td>{{subtotal}}</td>
-                            <td>{{costo_total}}</td>
+                            <td>${{costo_total}}</td>
+                            <td>${{subtotal}}</td>
                         </tr>
                     </tbody>
                 {{/each}}   

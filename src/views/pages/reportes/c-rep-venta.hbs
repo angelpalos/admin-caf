@@ -52,11 +52,26 @@
             
                     <button type="submit" class="btn btn-success btn-sm fs-5 w-25 ml-5">Generar</button>
                 </form>
-                {{#if report_dia}}
-                    <div class="reporte-dia">
-                        <h5>{{report_dia}}</h5>
-                    </div>
+                {{#if reporte_dia}}
+                <table class="table ">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Ingreso</th>
+                        </tr>
+                    </thead>
+                {{#each reporte_dia}}
+                    <tbody>
+                        <tr>
+                            <td>{{fecha}}</td>
+                            <td>${{total}}</td>
+                        </tr>
+                    </tbody>
+                {{/each}}   
+                </table>
                 {{/if}}
+
+
                 {{#if errd}}
                     <div class="reporte-dia">
                         <h5>{{errd}}</h5>
@@ -83,9 +98,26 @@
 
                     <button type="submit" class="btn btn-success btn-sm  w-25 fs-5 ml-8 ">Generar</button>
                 </form>
+                {{#if rep_periodo}}
+                <table class="table ">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Ingreso</th>
+                        </tr>
+                    </thead>
                 {{#each rep_periodo}}
-                    <h5>El {{fecha}} se gano ${{total}} </h5><br>
-                {{/each}}
+                    <tbody>
+                        <tr>
+                            <td>{{fecha}}</td>
+                            <td>${{total}}</td>
+                        </tr>
+                    </tbody>
+                {{/each}}   
+                </table>
+                {{/if}}
+
+
                 {{#if errp}}
                     <div class="reporte-dia">
                         <h5>{{errp}}</h5>
