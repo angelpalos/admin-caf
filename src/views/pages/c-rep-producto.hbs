@@ -46,7 +46,7 @@
             <div class="fecha">
                 <form action="/rep-producto_d" method="post" class="mt-4">
                     <label class="fs-4 ">Fecha</label>
-                    <input type="date" name="fecha" placeholder="fecha" class="border border-gray-200 w-500px text-lg placeholder-gray-500 p-2 my-2 
+                    <input type="date" id="date" name="fecha" placeholder="fecha" class="border border-gray-200 w-500px text-lg placeholder-gray-500 p-2 my-2 
                         bg-gray-300 focus:bg-white rounded-3xl ml-3" value="{{name}}" required>
                 
                     <button type="submit" class="btn btn-success btn-sm fs-5 w-25 ml-5">Generar</button>
@@ -89,12 +89,10 @@
             <div class="periodo">
                 <form action="/rep-producto_p" method="post">
                     <label class="fs-4">Periodo de</label>
-                    <input type="date" name="fecha_i" placeholder="fecha" class="border border-gray-200 w-50% text-lg placeholder-gray-500 p-2 my-2 
+                    <input type="date" id="date1" name="fecha_i" placeholder="fecha" class="border border-gray-200 w-50% text-lg placeholder-gray-500 p-2 my-2 
                         bg-gray-300 focus:bg-white rounded-3xl ml-3" value="{{name}}" required>
                     <label class="fs-4 ml-5">a</label>
-                
-
-                    <input type="date" name="fecha_f" placeholder="fecha" class="border border-gray-200 w-50% text-lg placeholder-gray-500 p-2 my-2 
+                    <input type="date" id="date2" name="fecha_f" placeholder="fecha" class="border border-gray-200 w-50% text-lg placeholder-gray-500 p-2 my-2 
                         bg-gray-300 focus:bg-white rounded-3xl  mt-3" value="{{name}}" required>
 
                     <button type="submit" class="btn btn-success btn-sm  w-25 fs-5 ml-8 ">Generar</button>
@@ -134,3 +132,11 @@
     </div>
 </body>
 </html>
+<script>
+    let datePickerId = document.getElementById("date")
+    let datePickerId1 = document.getElementById("date1")
+    let datePickerId2 = document.getElementById("date2")
+    datePickerId.max = new Date().toISOString().split("T")[0];
+    datePickerId1.max = new Date().toISOString().split("T")[0];
+    datePickerId2.max = new Date().toISOString().split("T")[0];
+</script>

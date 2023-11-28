@@ -8,25 +8,25 @@ function venta_dia(req, res) {
                     fecha:data.fecha,
                     total:rep_dia[0].total
                 }];
-                res.render("pages/reportes/c-rep-venta", {reporte_dia});
+                res.render("pages/c-rep-venta", {reporte_dia});
 
             } else {
-                res.render("pages/reportes/c-rep-venta", { errd: "No existen datos respecto a esos días" });
+                res.render("pages/c-rep-venta", { errd: "No existen datos respecto a esos días" });
             }
         })
     })
 }
 
 function venta_periodo(req,res){
-    const data = req.body;
+    const data = req.body; 
 
     req.getConnection((err, conn)=>{
         conn.query("SELECT DATE_FORMAT(a.fecha, '%d-%m-%Y') AS fecha ,SUM(b.cantidad*b.precio) AS total FROM pedido a, detalle b WHERE b.folio=a.folio and a.fecha>=date(?) AND a.fecha<=date(?) AND a.id_status=5 GROUP BY fecha",[data.fecha_i,data.fecha_f],(err,rep_periodo)=>{
             if(rep_periodo.length>0){
                 //console.log(rep_periodo);
-                res.render("pages/reportes/c-rep-venta",{rep_periodo});
+                res.render("pages/c-rep-venta",{rep_periodo});
             } else {
-                res.render("pages/reportes/c-rep-venta",{errp: "No existen datos respecto a esos días"});
+                res.render("pages/c-rep-venta",{errp: "No existen datos respecto a esos días"});
             }
         })
     })
@@ -40,9 +40,9 @@ function trabajador_dia(req, res) {
             if (err) throw err;
             if (reporte_dia.length > 0) {
                 //console.log(reporte_dia);
-                res.render("pages/reportes/c-rep-trabajador", { reporte_dia });
+                res.render("pages/c-rep-trabajador", { reporte_dia });
             } else {
-                res.render("pages/reportes/c-rep-trabajador", { errd: "No existen datos respecto a esos días" });
+                res.render("pages/c-rep-trabajador", { errd: "No existen datos respecto a esos días" });
 
             }
         })
@@ -57,9 +57,9 @@ function trabajador_periodo(req, res) {
             if (err) throw err;
             if (reporte_periodo.length > 0) {
                 //console.log(reporte_periodo);
-                res.render("pages/reportes/c-rep-trabajador", { reporte_periodo });
+                res.render("pages/c-rep-trabajador", { reporte_periodo });
             } else {
-                res.render("pages/reportes/c-rep-trabajador", { errp: "No existen datos respecto a esos días" });
+                res.render("pages/c-rep-trabajador", { errp: "No existen datos respecto a esos días" });
 
             }
         })
@@ -73,9 +73,9 @@ function producto_dia(req, res) {
         conn.query("SELECT c.name, SUM(b.cantidad) AS cantidad_total, SUM(c.costo*b.cantidad) AS costo_total, SUM(b.cantidad*c.precio) AS subtotal FROM product c JOIN detalle b ON c.id_producto = b.id_producto JOIN pedido a ON b.folio = a.folio WHERE a.id_status=5 and a.folio=b.folio and a.fecha=date(?) GROUP BY c.name ORDER BY SUM(b.cantidad*c.precio) DESC;", [data.fecha], (err, reporte_dia) => {
             if (err) throw err;
             if (reporte_dia.length > 0) {
-                res.render("pages/reportes/c-rep-producto", { reporte_dia });
+                res.render("pages/c-rep-producto", { reporte_dia });
             } else {
-                res.render("pages/reportes/c-rep-producto", { errd: "No existen datos respecto a esos días" });
+                res.render("pages/c-rep-producto", { errd: "No existen datos respecto a esos días" });
             }
         })
     })
@@ -88,9 +88,9 @@ function producto_periodo(req, res) {
             if (err) throw err;
             if (reporte_periodo.length > 0) {
                 //console.log(reporte_periodo);
-                res.render("pages/reportes/c-rep-producto", { reporte_periodo });
+                res.render("pages/c-rep-producto", { reporte_periodo });
             } else {
-                res.render("pages/reportes/c-rep-producto", { errp: "No existen datos respecto a esos días" });
+                res.render("pages/c-rep-producto", { errp: "No existen datos respecto a esos días" });
 
             }
         })
@@ -105,9 +105,9 @@ function detalle_dia(req, res) {
             if (err) throw err;
             if (reporte_dia.length > 0) {
                 //console.log(reporte_periodo);
-                res.render("pages/reportes/c-rep-detalle", { reporte_dia });
+                res.render("pages/c-rep-detalle", { reporte_dia });
             } else {
-                res.render("pages/reportes/c-rep-detalle", { errd: "No existen datos respecto a esos días" });
+                res.render("pages/c-rep-detalle", { errd: "No existen datos respecto a esos días" });
 
             }
         })
@@ -122,9 +122,9 @@ function detalle_periodo(req, res) {
             if (err) throw err;
             if (reporte_periodo.length > 0) {
                 //console.log(reporte_periodo);
-                res.render("pages/reportes/c-rep-detalle", { reporte_periodo });
+                res.render("pages/c-rep-detalle", { reporte_periodo });
             } else {
-                res.render("pages/reportes/c-rep-detalle", { errp: "No existen datos respecto a esos días" });
+                res.render("pages/c-rep-detalle", { errp: "No existen datos respecto a esos días" });
 
             }
         })
@@ -132,22 +132,22 @@ function detalle_periodo(req, res) {
 }
 
 function createreporteventa(req, res) {
-    res.render('pages/reportes/c-rep-venta');
+    res.render('pages/c-rep-venta');
 }
 
 
 
 function createreportedetalle(req, res) {
-    res.render('pages/reportes/c-rep-detalle');
+    res.render('pages/c-rep-detalle');
 }
 
 
 function createreportetrabajador(req, res) {
-    res.render('pages/reportes/c-rep-trabajador');
+    res.render('pages/c-rep-trabajador');
 }
 
 function createreporteproducto(req, res) {
-    res.render('pages/reportes/c-rep-producto');
+    res.render('pages/c-rep-producto');
 }
 
 

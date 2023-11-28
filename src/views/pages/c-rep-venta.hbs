@@ -20,6 +20,9 @@
         margin-left: 2rem;
         
     }
+    .ord{
+        text-align: right;
+    }
 </style>
 
 
@@ -30,7 +33,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
     <title>Reporte Venta</title>
 </head>
 
@@ -47,7 +49,7 @@
             <div class="fecha">
                 <form action="/rep-venta_d" method="post">
                     <label class="fs-4 ">Fecha</label>
-                    <input type="date" name="fecha" placeholder="fecha" class="border border-gray-200 w-500px text-lg placeholder-gray-500 p-2 my-2 
+                    <input type="date" id="date" name="fecha" placeholder="fecha" class="border border-gray-200 w-500px text-lg placeholder-gray-500 p-2 my-2 
                         bg-gray-300 focus:bg-white rounded-3xl ml-3" value="" required>
             
                     <button type="submit" class="btn btn-success btn-sm fs-5 w-25 ml-5">Generar</button>
@@ -88,16 +90,18 @@
             <div class="periodo">
                 <form action="/rep-venta_p" method="post">
                     <label class="fs-4">Periodo de</label>
-                    <input type="date" name="fecha_i" placeholder="fecha" class="border border-gray-200 w-50% text-lg placeholder-gray-500 p-2 my-2 
-                        bg-gray-300 focus:bg-white rounded-3xl ml-3" value="{{name}}">
+                    <input type="date" id="date-1" name="fecha_i" placeholder="fecha" class="border border-gray-200 w-50% text-lg placeholder-gray-500 p-2 my-2 
+                        bg-gray-300 focus:bg-white rounded-3xl ml-3" value="{{name}}" required>
 
                     <label class="fs-4 ml-5">a</label>
 
-                    <input type="date" name="fecha_f" placeholder="fecha" class="border border-gray-200 w-50% text-lg placeholder-gray-500 p-2 my-2 
-                        bg-gray-300 focus:bg-white rounded-3xl  mt-3" value="{{name}}">
+                    <input type="date" id="date-2" name="fecha_f" placeholder="fecha" class="border border-gray-200 w-50% text-lg placeholder-gray-500 p-2 my-2 
+                        bg-gray-300 focus:bg-white rounded-3xl  mt-3" value="{{name}}" required>
 
                     <button type="submit" class="btn btn-success btn-sm  w-25 fs-5 ml-8 ">Generar</button>
                 </form>
+
+
                 {{#if rep_periodo}}
                 <table class="table ">
                     <thead class="table-dark">
@@ -129,3 +133,14 @@
     </div>
 </body>
 </html>
+
+
+<script>
+    let datePickerId = document.getElementById("date")
+    let datePickerId1 = document.getElementById("date-1")
+    let datePickerId2 = document.getElementById("date-2")
+    datePickerId.max = new Date().toISOString().split("T")[0];
+    datePickerId1.max = new Date().toISOString().split("T")[0];
+    datePickerId2.max = new Date().toISOString().split("T")[0];
+
+</script>
