@@ -31,6 +31,9 @@
 
 <head>
     <meta charset="UTF-8">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.6/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.6/js/jquery.dataTables.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reporte de producto</title>
 </head>
@@ -86,6 +89,7 @@
 <br><hr>
 
 
+
             <div class="periodo">
                 <form action="/rep-producto_p" method="post">
                     <label class="fs-4">Periodo de</label>
@@ -99,7 +103,7 @@
                 </form>
             </div>
             {{#if reporte_periodo}}
-                <table class="table">
+                <table class="table" id="miTabla">
                     <thead class="table-dark">
                         <tr>
                             <th>Producto</th>
@@ -139,4 +143,16 @@
     datePickerId.max = new Date().toISOString().split("T")[0];
     datePickerId1.max = new Date().toISOString().split("T")[0];
     datePickerId2.max = new Date().toISOString().split("T")[0];
+
+    function ordenaCol0{
+        $(document).ready(function () {
+            $('#miTabla').DataTable({
+                "order": [[0, 'asc']], // La columna 0 (Nombre) se ordenará de forma ascendente
+                "lengthMenu": [5, 10, 25, 50],
+                "searching": true,
+                "ordering": true,
+                // Agrega más opciones según sea necesario
+            });
+        });
+    }
 </script>

@@ -47,5 +47,6 @@ router.get('/c-rep-venta', reportesController.createreporteventa);
 router.get('/c-rep-detalle', reportesController.createreportedetalle);
 router.get('/c-rep-trabajador', reportesController.createreportetrabajador);
 router.get('/c-rep-producto', reportesController.createreporteproducto);
+
 //Exporta las rutas 
 module.exports = router;

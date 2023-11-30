@@ -42,6 +42,7 @@ function indexp(req, res) {
 //Al ejecutar eso te redirige a la pagina de "/productos"
   function destroy(req, res) {
     const id_producto = req.body.id;
+    console.log(id_producto)
     
     req.getConnection((err, conn) => {
       conn.query('DELETE FROM product WHERE id_producto = ?', [id_producto], (err, rows) => {
@@ -95,7 +96,7 @@ function indexp(req, res) {
 
   function buscar(req, res){
     const data = req.body;
-    const busc = '%'+ data.buscador + '%'
+    const busc = data.buscador + '%'
     console.log(busc)
     req.getConnection((err, conn)=>{
       conn.query("SELECT a.costo, a.unidad, a.id_producto, a.name, b.descripcion, a.precio, c.description FROM product a, articulo b, units c WHERE a.tipo_art=b.tipo_art and a.unidad=c.unidad and a.name LIKE ? ORDER BY `name` ASC ", [busc], (err, pers) => {
